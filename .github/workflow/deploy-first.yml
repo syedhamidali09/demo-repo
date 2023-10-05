@@ -1,0 +1,29 @@
+name: Deploy Workflow
+on: [push,workflow_dispatch]
+
+jobs:
+  shell-commands:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get time and date 
+        run: date
+
+      - name : Run multiple commands 
+        run : |
+          node -v 
+          npm -v 
+          python --version
+          lsb -a 
+
+  parallel-job:
+    runs-on: macos-latest
+    steps: 
+      - name: View SW version 
+        run: sw_vers 
+
+  dependent-job:
+    runs-on: windows-latest
+    needs: shell-commands 
+    steps:
+      - name: Output a string
+        run: Write-Output "Hello World from Windows"
