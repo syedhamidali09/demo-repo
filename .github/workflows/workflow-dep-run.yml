@@ -1,0 +1,11 @@
+name: Workflow dep run
+on:
+    workflow_run:
+        workflows: [Checkout]
+        types: [completed]
+
+jobs:
+    echo-info:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "I was trigerred after 'Checkout' WF"
