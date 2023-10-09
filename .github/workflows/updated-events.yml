@@ -1,0 +1,21 @@
+name: Repository Envents with activity types
+on:
+    push:
+    pull_request:
+        types: [opened, assigned, reopened, synchronize]
+    issues:
+        types: [opened]
+
+jobs:
+    checkout-on-event-type:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout commit id and branch
+              run: | 
+                echo $GITHUB_SHA
+                echo $GITHUB_REF
+            - name: Clone the repo
+              uses: actions/checkout@v4 
+ 
+
+    
