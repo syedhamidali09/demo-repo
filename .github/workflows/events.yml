@@ -1,0 +1,13 @@
+name: Respository Events
+on: [push, pull_request, issues]
+
+jobs:
+  checkout-test:
+    runs-on: ubuntu-latest
+    steps: 
+        - name: check commit id and branch
+          run: |
+            echo $GITHUB_SHA
+            echo $GITHUB_REF
+        - name: Clone the repo
+          uses: actions/checkout@v3
