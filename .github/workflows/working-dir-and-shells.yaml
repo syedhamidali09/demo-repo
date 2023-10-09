@@ -1,0 +1,42 @@
+name: Working Dirs & Shells
+on: [push]
+defaults:
+    run:
+        shell: bash   # This sets the over all default shell for the workflow
+jobs:
+    display-wd-info:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display Working Directory & List Files
+              run: |
+                pwd
+                ls -a
+                echo $GITHUB_SHA
+                echo $GITHUB_REPOSITORY
+                echo $GITHUB_WORKSPACE
+            - name: Change working directory from default
+              working-directory: /home/runner
+              run: pwd 
+
+    display-wd-info-win:
+         runs-on: windows-latest
+         defaults:
+            run:
+                shell: pwsh # this overrides the above default decleration to use bash for over all workflow. This is job level over ride
+         steps:
+            - name: Display Working Directory & List Files
+              run: |
+                Get-Location
+                dir
+                echo $env:GITHUB_SHA
+                echo $env:GITHUB_REPOSITORY
+                echo $env:GITHUB_WORKSPACE
+            - name: Python Shell
+              shell: python   # This is a step level over ride of shell, this step will use python on windows
+              run: |
+                 import python
+                 print(platform.processor)
+
+ 
+
+
