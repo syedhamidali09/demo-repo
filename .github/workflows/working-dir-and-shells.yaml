@@ -35,7 +35,7 @@ jobs:
               shell: python   # This is a step level over ride of shell, this step will use python on windows
               run: |
                  import python
-                 print(platform.processor)
+                 print(platform.processor())
 
  
 
